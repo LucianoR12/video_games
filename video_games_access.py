@@ -7,6 +7,7 @@ import os
 import matplotlib.pyplot as plt
 import seaborn as sns
 import logging
+import ast
 
 def run_video_games_access(file_name):
     try:
@@ -27,13 +28,14 @@ def run_video_games_access(file_name):
         # vg.print_description(df)
         # vg.print_first_row(df)
 
-        vg.remove_columns(df)
-        vg.rename_column(df)
-        # vg.remove_rows(df)
-        vg.remove_duplicates(df)
-        vg.reset_index(df)
-        vg.check_missing_values(df)
+        vg.rename_column(df)        
         vg.clean_age_rating(df)
+        vg.extract_platform_info(df)
+        vg.check_missing_values(df)
+        vg.remove_duplicates(df)
+        vg.remove_columns(df)
+        # vg.remove_rows(df)
+        vg.reset_index(df)
 
         cleaned_csv = vg.get_file_path(f"{os.path.splitext(file_name)[0]}_cleaned", "csv")
         df.to_csv(cleaned_csv, index=False)
@@ -63,6 +65,7 @@ def run_video_games_access(file_name):
         vg.publisher_bar_chart(df, file_name)
         vg.genre_bar_chart(df, file_name)
         vg.age_rating_bar_chart(df, file_name)
+        vg.platform_bar_chart(df, file_name)
 
         cleaned_df = df.copy()
         return cleaned_df

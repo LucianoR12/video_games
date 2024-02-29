@@ -9,6 +9,7 @@ import os
 import matplotlib.pyplot as plt
 import seaborn as sns
 import logging
+import ast
 
 # # # # # # # # # # # #
 #   OUTPUT FILES      #
@@ -166,6 +167,12 @@ def clean_age_rating(df):
     }
     df['Age Rating'] = df['Age Rating'].map(rating_mapping)
     logging.info("'clean age rating' completed.")
+
+# extracting information from the "Platform" column
+def extract_platform_info(df):
+    logging.info("'extract platform info' started.")
+    df['Platform'] = df['Platforms Info'].apply(lambda x: ast.literal_eval(x)[0]['Platform'] if pd.notnull(x) and ast.literal_eval(x) else None)
+    logging.info("'extract platform info' completed.")
 
 # # # # # # # # # # # #
 #   TITLE             #
@@ -538,6 +545,41 @@ def age_rating_bar_chart(df, file_name):
     png_file_name = f"{os.path.splitext(file_name)[0]}_age_rating.png"
     plt.savefig(png_file_name, bbox_inches='tight', dpi=300)
     logging.info("'age rating bar chart' completed.")
+
+# # # # # # # # # # # #
+#   PLATFORM          #
+# # # # # # # # # # # #
+
+# platform bar chart
+def platform_bar_chart(df, file_name):
+    logging.info("'platform bar chart' started.")
+
+    platform_count = df['Platform'].value_counts()
+
+    plt.style.use('dark_background')
+    fig, ax = plt.subplots(figsize=(12, 6))
+
+    bar_colors = sns.color_palette("viridis", len(platform_count))
+    bars = ax.bar(platform_count.index, platform_count, color=bar_colors)
+
+    plt.setp(ax.xaxis.get_majorticklabels(), rotation=30, ha='right')
+
+    ax.set_title("Games by Platform", fontsize=16, color='white')
+    ax.set_xlabel("Platform", fontsize=12, color='white')
+    ax.set_ylabel("Games", fontsize=12, color='white')
+
+    ax.grid(color='gray', linestyle='--', linewidth=0.5, alpha=0.3)
+    ax.tick_params(axis='x', colors='white')
+    ax.tick_params(axis='y', colors='white')
+
+    for bar in bars:
+        yval = bar.get_height()
+        plt.text(bar.get_x() + bar.get_width() / 2, yval, f"{yval:.0f}", ha='center', va='bottom', color='white', fontsize=8)
+
+    png_file_name = f"{os.path.splitext(file_name)[0]}_platform.png"
+    plt.savefig(png_file_name, bbox_inches='tight', dpi=300)
+    logging.info("'platform bar chart' completed.")
+
 
 # # # # # # # # # # # #
 #   END               #

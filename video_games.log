@@ -5,19 +5,20 @@ INFO:root:'start process csv file' video_games.csv started.
 INFO:root:'start process csv file' completed.
 INFO:root:'columns validation' started.
 INFO:root:'columns validation' completed.
-INFO:root:'remove columns' started.
-INFO:root:'remove columns' completed.
 INFO:root:'rename column' started.
 INFO:root:'rename column' completed.
-INFO:root:'remove duplicates' started.
-INFO:root:'remove duplicates' completed.
-INFO:root:'reset index' started.
-INFO:root:'reset index' completed.
-INFO:root:'check missing values' started.
-INFO:root:Rows with missing values dropped.
-INFO:root:'check missing values' completed.
 INFO:root:'clean age rating' started.
 INFO:root:'clean age rating' completed.
+INFO:root:'extract platform info' started.
+INFO:root:'extract platform info' completed.
+INFO:root:'check missing values' started.
+INFO:root:'check missing values' completed.
+INFO:root:'remove duplicates' started.
+INFO:root:'remove duplicates' completed.
+INFO:root:'remove columns' started.
+INFO:root:'remove columns' completed.
+INFO:root:'reset index' started.
+INFO:root:'reset index' completed.
 INFO:root:'count developer' started.
 INFO:root:'count developer' completed.
 INFO:root:'most common developer' started.
@@ -54,5 +55,7 @@ INFO:root:'genre bar chart' started.
 INFO:root:'genre bar chart' completed.
 INFO:root:'age rating bar chart' started.
 INFO:root:'age rating bar chart' completed.
+INFO:root:'platform bar chart' started.
+INFO:root:'platform bar chart' completed.
 INFO:root:'end process csv file' started.
 INFO:root:'end process csv file' completed.
