@@ -1,0 +1,56 @@
+INFO:root:'video games access' script started.
+INFO:root:'check csv file' started.
+INFO:root:'check csv file' completed.
+INFO:root:'start process csv file' video_games.csv started.
+INFO:root:'start process csv file' completed.
+INFO:root:'columns validation' started.
+INFO:root:'columns validation' completed.
+INFO:root:'remove columns' started.
+INFO:root:'remove columns' completed.
+INFO:root:'rename column' started.
+INFO:root:'rename column' completed.
+INFO:root:'remove duplicates' started.
+INFO:root:'remove duplicates' completed.
+INFO:root:'reset index' started.
+INFO:root:'reset index' completed.
+INFO:root:'check missing values' started.
+INFO:root:Rows with missing values dropped.
+INFO:root:'check missing values' completed.
+INFO:root:'clean age rating' started.
+INFO:root:'clean age rating' completed.
+INFO:root:'count developer' started.
+INFO:root:'count developer' completed.
+INFO:root:'most common developer' started.
+INFO:root:'most common developer' completed.
+INFO:root:'least common developer' started.
+INFO:root:'least common developer' completed.
+INFO:root:'count publisher' started.
+INFO:root:'count publisher' completed.
+INFO:root:'most common publisher' started.
+INFO:root:'most common publisher' completed.
+INFO:root:'least common publisher' started.
+INFO:root:'least common publisher' completed.
+INFO:root:'count genre' started.
+INFO:root:'count genre' completed.
+INFO:root:'most common genre' started.
+INFO:root:'most common genre' completed.
+INFO:root:'least common genre' started.
+INFO:root:'least common genre' completed.
+INFO:root:'count age rating' started.
+INFO:root:'count age rating' completed.
+INFO:root:'most common age rating' started.
+INFO:root:'most common age rating' completed.
+INFO:root:'least common age rating' started.
+INFO:root:'least common age rating' completed.
+INFO:root:'release date bar chart' started.
+INFO:root:'release date bar chart' completed.
+INFO:root:'developer bar chart' started.
+INFO:root:'developer bar chart' completed.
+INFO:root:'publisher bar chart' started.
+INFO:root:'publisher bar chart' completed.
+INFO:root:'genre bar chart' started.
+INFO:root:'genre bar chart' completed.
+INFO:root:'age rating bar chart' started.
+INFO:root:'age rating bar chart' completed.
+INFO:root:'end process csv file' started.
+INFO:root:'end process csv file' completed.
