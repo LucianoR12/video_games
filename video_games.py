@@ -181,7 +181,7 @@ def extract_platform_info(df):
 # the sum of all the games
 def total_games(df):
     logging.info("'total games' started.")
-    total_games = df["Title"].sum()
+    total_games = df["Title"].count()
     print(f"The total games made is: {total_games:.0f}")
     logging.info("'total games' completed.")
 
@@ -625,7 +625,6 @@ def platform_bar_chart(df, file_name):
     png_file_name = f"{os.path.splitext(file_name)[0]}_platform.png"
     plt.savefig(png_file_name, bbox_inches='tight', dpi=300)
     logging.info("'platform bar chart' completed.")
-
 
 # # # # # # # # # # # #
 #   END               #

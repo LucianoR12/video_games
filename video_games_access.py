@@ -11,11 +11,23 @@ import ast
 
 def run_video_games_access(file_name):
     try:
-        log_file_path = vg.get_file_path(file_name, "log")
-        txt_file_path = vg.get_file_path(file_name, "txt")
-        png_file_path = vg.get_file_path(file_name, "png")
-        xlsx_file_path = vg.get_file_path(file_name, "xlsx")
-        csv_file_path = vg.get_file_path(file_name, "csv")
+        log_folder = "log"
+        txt_folder = "txt"
+        png_folder = "png"
+        xlsx_folder = "xlsx"
+        csv_folder = "csv"
+
+        log_file_path = vg.get_file_path(f"{os.path.splitext(file_name)[0]}", log_folder)
+        txt_file_path = vg.get_file_path(f"{os.path.splitext(file_name)[0]}", txt_folder)
+        png_file_path_release_date_year = vg.get_file_path(f"{os.path.splitext(file_name)[0]}_release_date_year", png_folder)
+        png_file_path_release_date_month = vg.get_file_path(f"{os.path.splitext(file_name)[0]}_release_date_month", png_folder)
+        png_file_path_developer = vg.get_file_path(f"{os.path.splitext(file_name)[0]}_developer", png_folder)
+        png_file_path_publisher = vg.get_file_path(f"{os.path.splitext(file_name)[0]}_publisher", png_folder)
+        png_file_path_genre = vg.get_file_path(f"{os.path.splitext(file_name)[0]}_genre", png_folder)
+        png_file_path_age_rating = vg.get_file_path(f"{os.path.splitext(file_name)[0]}_age_rating", png_folder)
+        png_file_path_platform = vg.get_file_path(f"{os.path.splitext(file_name)[0]}_platform", png_folder)
+        xlsx_file_path = vg.get_file_path(f"{os.path.splitext(file_name)[0]}_cleaned", xlsx_folder)
+        csv_file_path = vg.get_file_path(f"{os.path.splitext(file_name)[0]}_cleaned", csv_folder)
 
         vg.setup_logging(log_file_path)
         logging.info("'video games access' script started.")
@@ -42,6 +54,8 @@ def run_video_games_access(file_name):
 
         cleaned_xlsx = vg.get_file_path(f"{os.path.splitext(file_name)[0]}_cleaned", "xlsx")
         df.to_excel(cleaned_xlsx, index=False)
+
+        vg.total_games(df)
 
         vg.count_release_date(df)
         vg.most_common_release_date(df)
@@ -84,22 +98,41 @@ def run_video_games_access(file_name):
     finally:
         vg.end_process_csv_file(output_file, output_buffer)
 
-    logging.info("'video games access' script completed.")
+        logging.info("'video games access' script completed.")
+        logging.shutdown()
 
-    log_file_destination = os.path.join(os.path.dirname(os.path.abspath(__file__)), os.path.basename(log_file_path))
-    os.replace(log_file_path, log_file_destination)
+        log_file_destination = os.path.join(os.path.dirname(os.path.abspath(__file__)), log_folder, os.path.basename(log_file_path))
+        os.replace(log_file_path, log_file_destination)
 
-    txt_file_destination = os.path.join(os.path.dirname(os.path.abspath(__file__)), os.path.basename(txt_file_path))
-    os.replace(txt_file_path, txt_file_destination)
+        txt_file_destination = os.path.join(os.path.dirname(os.path.abspath(__file__)), txt_folder, os.path.basename(txt_file_path))
+        os.replace(txt_file_path, txt_file_destination)
 
-    png_file_destination = os.path.join(os.path.dirname(os.path.abspath(__file__)), os.path.basename(png_file_path))
-    os.replace(png_file_path, png_file_destination)
+        png_file_destination_release_date_year = os.path.join(os.path.dirname(os.path.abspath(__file__)), png_folder, os.path.basename(png_file_path_release_date_year))
+        os.replace(png_file_path_release_date_year, png_file_destination_release_date_year)
 
-    xlsx_file_destination = os.path.join(os.path.dirname(os.path.abspath(__file__)), os.path.basename(xlsx_file_path))
-    os.replace(xlsx_file_path, xlsx_file_destination)
+        png_file_destination_release_date_month = os.path.join(os.path.dirname(os.path.abspath(__file__)), png_folder, os.path.basename(png_file_path_release_date_month))
+        os.replace(png_file_path_release_date_month, png_file_destination_release_date_month)
 
-    csv_file_destination = os.path.join(os.path.dirname(os.path.abspath(__file__)), os.path.basename(csv_file_path))
-    os.replace(csv_file_path, csv_file_destination)
+        png_file_destination_developer = os.path.join(os.path.dirname(os.path.abspath(__file__)), png_folder, os.path.basename(png_file_path_developer))
+        os.replace(png_file_path_developer, png_file_destination_developer)
+
+        png_file_destination_publisher = os.path.join(os.path.dirname(os.path.abspath(__file__)), png_folder, os.path.basename(png_file_path_publisher))
+        os.replace(png_file_path_publisher, png_file_destination_publisher)
+
+        png_file_destination_genre = os.path.join(os.path.dirname(os.path.abspath(__file__)), png_folder, os.path.basename(png_file_path_genre))
+        os.replace(png_file_path_genre, png_file_destination_genre)
+
+        png_file_destination_age_rating = os.path.join(os.path.dirname(os.path.abspath(__file__)), png_folder, os.path.basename(png_file_path_age_rating))
+        os.replace(png_file_path_age_rating, png_file_destination_age_rating)
+
+        png_file_destination_platform = os.path.join(os.path.dirname(os.path.abspath(__file__)), png_folder, os.path.basename(png_file_path_platform))
+        os.replace(png_file_path_platform, png_file_destination_platform)
+
+        xlsx_file_destination = os.path.join(os.path.dirname(os.path.abspath(__file__)), xlsx_folder, os.path.basename(xlsx_file_path))
+        os.replace(xlsx_file_path, xlsx_file_destination)
+
+        csv_file_destination = os.path.join(os.path.dirname(os.path.abspath(__file__)), csv_folder, os.path.basename(csv_file_path))
+        os.replace(csv_file_path, csv_file_destination)
 
 if __name__ == "__main__":
     file_name = input("Enter the file name (including extension): ")

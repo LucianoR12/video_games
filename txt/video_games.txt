@@ -10,6 +10,7 @@ User Ratings Count    2756
 Platforms Info           0
 Platform                29
 dtype: int64
+The total games made is: 9084
 Games by release date:
 11/14/2006    24
 11/13/2007    19

@@ -19,6 +19,8 @@ INFO:root:'remove columns' started.
 INFO:root:'remove columns' completed.
 INFO:root:'reset index' started.
 INFO:root:'reset index' completed.
+INFO:root:'total games' started.
+INFO:root:'total games' completed.
 INFO:root:'count release date' started.
 INFO:root:'count release date' completed.
 INFO:root:'most common release date' started.
@@ -71,3 +73,4 @@ INFO:root:'platform bar chart' started.
 INFO:root:'platform bar chart' completed.
 INFO:root:'end process csv file' started.
 INFO:root:'end process csv file' completed.
+INFO:root:'video games access' script completed.
