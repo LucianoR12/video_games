@@ -21,21 +21,6 @@ def get_file_path(file_name, extension):
     file_path = os.path.join(script_directory, f"{os.path.splitext(file_name)[0]}.{extension}")
     return file_path
 
-def get_log_file_path(file_name):
-    return get_file_path(file_name, "log")
-
-def get_txt_file_path(file_name):
-    return get_file_path(file_name, "txt")
-
-def get_png_file_path(file_name):
-    return get_file_path(file_name, "png")
-
-def get_xlsx_file_path(file_name):
-    return get_file_path(file_name, "xlsx")
-
-def get_csv_file_path(file_name):
-    return get_file_path(file_name, "csv")
-
 # setup logging to save logs to a file
 def setup_logging(log_file):
     logging.basicConfig(level=logging.INFO, filemode='w', filename=log_file)
@@ -192,10 +177,15 @@ def total_games(df):
 # counts all the games by release date
 def count_release_date(df):
     logging.info("'count release date' started.")
-    count_release_date = df["Release Date"].value_counts()
-    count_release_date.index.name = None
-    print("Games by release date:")
-    print(count_release_date.to_string(name=False))
+    df['Release Date'] = pd.to_datetime(df['Release Date'])
+    df['Release Year'] = df['Release Date'].dt.year
+    df['Release Month'] = df['Release Date'].dt.month
+    monthly_counts = df.groupby(['Release Year', 'Release Month']).size().unstack()
+    # count_release_date = df.groupby(['Release Year', 'Release Month']).value_counts()
+    # count_release_date.index.name = None
+    print("Games by release year and month:")
+    print(monthly_counts.to_string())
+
     logging.info("'count release date' completed.")
 
 # highlight the most common release date
