@@ -13,7 +13,7 @@ def run_video_games_access(file_name):
         log_file_path = vg.get_file_path(file_name, "log")
         txt_file_path = vg.get_file_path(file_name, "txt")
         png_file_path = vg.get_file_path(file_name, "png")
-        # xlsx_file_path = vg.get_file_path(file_name, "xlsx")
+        xlsx_file_path = vg.get_file_path(file_name, "xlsx")
         csv_file_path = vg.get_file_path(file_name, "csv")
 
         vg.setup_logging(log_file_path)
@@ -38,6 +38,9 @@ def run_video_games_access(file_name):
         cleaned_csv = vg.get_file_path(f"{os.path.splitext(file_name)[0]}_cleaned", "csv")
         df.to_csv(cleaned_csv, index=False)
 
+        cleaned_xlsx = vg.get_file_path(f"{os.path.splitext(file_name)[0]}_cleaned", "xlsx")
+        df.to_excel(cleaned_xlsx, index=False)
+
         vg.count_developer(df)
         vg.most_common_developer(df)
         vg.least_common_developer(df)
@@ -54,7 +57,8 @@ def run_video_games_access(file_name):
         vg.most_common_age_rating(df)
         vg.least_common_age_rating(df)
 
-        vg.release_date_bar_chart(df, file_name)
+        vg.release_date_year_bar_chart(df, file_name)
+        vg.release_date_month_line_chart(df, file_name)
         vg.developer_bar_chart(df, file_name)
         vg.publisher_bar_chart(df, file_name)
         vg.genre_bar_chart(df, file_name)
@@ -81,8 +85,8 @@ def run_video_games_access(file_name):
     png_file_destination = os.path.join(os.path.dirname(os.path.abspath(__file__)), os.path.basename(png_file_path))
     os.replace(png_file_path, png_file_destination)
 
-    # xlsx_file_destination = os.path.join(os.path.dirname(os.path.abspath(__file__)), os.path.basename(xlsx_file_path))
-    # os.replace(xlsx_file_path, xlsx_file_destination)
+    xlsx_file_destination = os.path.join(os.path.dirname(os.path.abspath(__file__)), os.path.basename(xlsx_file_path))
+    os.replace(xlsx_file_path, xlsx_file_destination)
 
     csv_file_destination = os.path.join(os.path.dirname(os.path.abspath(__file__)), os.path.basename(csv_file_path))
     os.replace(csv_file_path, csv_file_destination)

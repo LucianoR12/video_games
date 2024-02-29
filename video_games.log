@@ -42,8 +42,10 @@ INFO:root:'most common age rating' started.
 INFO:root:'most common age rating' completed.
 INFO:root:'least common age rating' started.
 INFO:root:'least common age rating' completed.
-INFO:root:'release date bar chart' started.
-INFO:root:'release date bar chart' completed.
+INFO:root:'release date year bar chart' started.
+INFO:root:'release date year bar chart' completed.
+INFO:root:'release date month line chart' started.
+INFO:root:'release date month line chart' completed.
 INFO:root:'developer bar chart' started.
 INFO:root:'developer bar chart' completed.
 INFO:root:'publisher bar chart' started.

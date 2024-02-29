@@ -147,7 +147,6 @@ def check_missing_values(df):
     
     if missing_values.any():
         df.dropna(inplace=True)
-        logging.info("Rows with missing values dropped.")
     
     # df.fillna(value=fill_value, inplace=True)
     
@@ -183,9 +182,9 @@ def total_games(df):
 #   RELEASE DATE      #
 # # # # # # # # # # # #
 
-# release date bar chart
-def release_date_bar_chart(df, file_name):
-    logging.info("'release date bar chart' started.")
+# release date year bar chart
+def release_date_year_bar_chart(df, file_name):
+    logging.info("'release date year bar chart' started.")
 
     df['Release Year'] = pd.to_datetime(df['Release Date']).dt.year
     release_year_count = df['Release Year'].value_counts().sort_index()
@@ -196,9 +195,11 @@ def release_date_bar_chart(df, file_name):
     bar_colors = sns.color_palette("viridis", len(release_year_count))
     bars = ax.bar(release_year_count.index.astype(int), release_year_count, color=bar_colors)
 
+    plt.setp(ax.xaxis.get_majorticklabels(), rotation=30, ha='right')
+
     plt.xticks(release_year_count.index.astype(int), rotation=45)
 
-    ax.set_title("Games released by year", fontsize=16, color='white')
+    ax.set_title("Games Released by Year", fontsize=16, color='white')
     ax.set_xlabel("Year", fontsize=12, color='white')
     ax.set_ylabel("Games", fontsize=12, color='white')
 
@@ -210,10 +211,45 @@ def release_date_bar_chart(df, file_name):
         yval = bar.get_height()
         plt.text(bar.get_x() + bar.get_width()/2, yval, f"{yval:.0f}", ha='center', va='bottom', color='white', fontsize=8)
 
-    png_file_name = f"{os.path.splitext(file_name)[0]}_release_date.png"
+    png_file_name = f"{os.path.splitext(file_name)[0]}_release_date_year.png"
     plt.savefig(png_file_name, bbox_inches='tight', dpi=300)
-    logging.info("'release date bar chart' completed.")
-    plt.show()
+    logging.info("'release date year bar chart' completed.")
+
+# release date month line chart
+def release_date_month_line_chart(df, file_name):
+    logging.info("'release date month line chart' started.")
+
+    df['Release Year'] = pd.to_datetime(df['Release Date']).dt.year
+
+    plt.style.use('dark_background')
+
+    monthly_counts = df.groupby(['Release Year', pd.to_datetime(df['Release Date']).dt.month]).size().unstack()
+
+    fig, ax = plt.subplots(figsize=(12, 6))
+
+    line_colors = sns.color_palette("viridis", len(monthly_counts))
+
+    for year, color in zip(monthly_counts.index, line_colors):
+        ax.plot(monthly_counts.columns, monthly_counts.loc[year], marker='o', label=year, color=color)
+
+    plt.setp(ax.xaxis.get_majorticklabels(), rotation=30, ha='right')
+
+    ax.set_xticks(monthly_counts.columns)
+    ax.set_xticklabels(['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'])
+
+    ax.set_title("Games Released by Month", fontsize=16, color='white')
+    ax.set_xlabel("Month", fontsize=12, color='white')
+    ax.set_ylabel("Games", fontsize=12, color='white')
+
+    ax.grid(color='gray', linestyle='--', linewidth=0.5, alpha=0.3)
+    ax.tick_params(axis='x', colors='white')
+    ax.tick_params(axis='y', colors='white')
+
+    ax.legend(loc='upper left', bbox_to_anchor=(1, 1), title='Year', title_fontsize='12', facecolor='black', edgecolor='white')
+
+    png_file_name = f"{os.path.splitext(file_name)[0]}_release_date_month.png"
+    plt.savefig(png_file_name, bbox_inches='tight', dpi=300)
+    logging.info(f"'release date month line chart' completed.")
 
 # # # # # # # # # # # #
 #   DEVELOPER         #
@@ -255,6 +291,8 @@ def developer_bar_chart(df, file_name):
     bar_colors_top = sns.color_palette("viridis", len(developer_count_top))
     bars_top = ax1.bar(developer_count_top.index, developer_count_top, color=bar_colors_top)
 
+    plt.setp(ax1.xaxis.get_majorticklabels(), rotation=30, ha='right')
+
     ax1.set_title("Top 10 Developers", fontsize=16, color='white')
     ax1.set_xlabel("Developer", fontsize=12, color='white')
     ax1.set_ylabel("Games", fontsize=12, color='white')
@@ -269,6 +307,8 @@ def developer_bar_chart(df, file_name):
 
     bar_colors_bottom = sns.color_palette("viridis", len(developer_count_bottom))
     bars_bottom = ax2.bar(developer_count_bottom.index, developer_count_bottom, color=bar_colors_bottom)
+
+    plt.setp(ax2.xaxis.get_majorticklabels(), rotation=30, ha='right')
 
     ax2.set_title("Bottom 10 Developers", fontsize=16, color='white')
     ax2.set_xlabel("Developer", fontsize=12, color='white')
@@ -287,7 +327,6 @@ def developer_bar_chart(df, file_name):
     png_file_name = f"{os.path.splitext(file_name)[0]}_developer.png"
     plt.savefig(png_file_name, bbox_inches='tight', dpi=300)
     logging.info("'developer bar chart' completed.")
-    plt.show()
 
 # # # # # # # # # # # #
 #   PUBLISHER         #
@@ -329,6 +368,8 @@ def publisher_bar_chart(df, file_name):
     bar_colors_top = sns.color_palette("viridis", len(top_publisher_count))
     bars_top = ax1.bar(top_publisher_count.index, top_publisher_count, color=bar_colors_top)
 
+    plt.setp(ax1.xaxis.get_majorticklabels(), rotation=30, ha='right')
+
     ax1.set_title("Top 10 Publishers", fontsize=16, color='white')
     ax1.set_xlabel("Publisher", fontsize=12, color='white')
     ax1.set_ylabel("Games", fontsize=12, color='white')
@@ -344,6 +385,8 @@ def publisher_bar_chart(df, file_name):
     bar_colors_bottom = sns.color_palette("viridis", len(bottom_publisher_count))
     bars_bottom = ax2.bar(bottom_publisher_count.index, bottom_publisher_count, color=bar_colors_bottom)
 
+    plt.setp(ax2.xaxis.get_majorticklabels(), rotation=30, ha='right')
+
     ax2.set_title("Bottom 10 Publishers", fontsize=16, color='white')
     ax2.set_xlabel("Publisher", fontsize=12, color='white')
     ax2.set_ylabel("Games", fontsize=12, color='white')
@@ -358,10 +401,9 @@ def publisher_bar_chart(df, file_name):
 
     plt.subplots_adjust(hspace=0.5)
 
-    png_file_name = f"{os.path.splitext(file_name)[0]}_publisher_chart.png"
+    png_file_name = f"{os.path.splitext(file_name)[0]}_publisher.png"
     plt.savefig(png_file_name, bbox_inches='tight', dpi=300)
     logging.info("'publisher bar chart' completed.")
-    plt.show()
 
 # # # # # # # # # # # #
 #   GENRE             #
@@ -394,32 +436,51 @@ def least_common_genre(df):
 def genre_bar_chart(df, file_name):
     logging.info("'genre bar chart' started.")
 
-    genre_count = df['Genre'].value_counts().sort_values(ascending=False)
+    top_genre_count = df['Genre'].value_counts().head(10)
+    bottom_genre_count = df['Genre'].value_counts().tail(10)
 
     plt.style.use('dark_background')
-    fig, ax = plt.subplots(figsize=(12, 6))
+    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 12))
 
-    bar_colors = sns.color_palette("viridis", len(genre_count))
-    bars = ax.bar(genre_count.index, genre_count, color=bar_colors)
+    bar_colors_top = sns.color_palette("viridis", len(top_genre_count))
+    bars_top = ax1.bar(top_genre_count.index, top_genre_count, color=bar_colors_top)
 
-    plt.xticks(rotation=90, ha='right')
+    plt.setp(ax1.xaxis.get_majorticklabels(), rotation=30, ha='right')
 
-    ax.set_title("Games by genre", fontsize=16, color='white')
-    ax.set_xlabel("Genre", fontsize=12, color='white')
-    ax.set_ylabel("Games", fontsize=12, color='white')
+    ax1.set_title("Top 10 Genre", fontsize=16, color='white')
+    ax1.set_xlabel("Genre", fontsize=12, color='white')
+    ax1.set_ylabel("Games", fontsize=12, color='white')
 
-    ax.grid(color='gray', linestyle='--', linewidth=0.5, alpha=0.3)
-    ax.tick_params(axis='x', colors='white')
-    ax.tick_params(axis='y', colors='white')
+    ax1.grid(color='gray', linestyle='--', linewidth=0.5, alpha=0.3)
+    ax1.tick_params(axis='x', colors='white')
+    ax1.tick_params(axis='y', colors='white')
 
-    for bar in bars:
+    for bar in bars_top:
         yval = bar.get_height()
-        plt.text(bar.get_x() + bar.get_width() / 2, yval, f"{yval:.0f}", ha='center', va='bottom', color='white', fontsize=8)
+        ax1.text(bar.get_x() + bar.get_width() / 2, yval, f"{yval:.0f}", ha='center', va='bottom', color='white', fontsize=8)
+
+    bar_colors_bottom = sns.color_palette("viridis", len(bottom_genre_count))
+    bars_bottom = ax2.bar(bottom_genre_count.index, bottom_genre_count, color=bar_colors_bottom)
+
+    plt.setp(ax2.xaxis.get_majorticklabels(), rotation=30, ha='right')
+
+    ax2.set_title("Bottom 10 Genre", fontsize=16, color='white')
+    ax2.set_xlabel("Publisher", fontsize=12, color='white')
+    ax2.set_ylabel("Games", fontsize=12, color='white')
+
+    ax2.grid(color='gray', linestyle='--', linewidth=0.5, alpha=0.3)
+    ax2.tick_params(axis='x', colors='white')
+    ax2.tick_params(axis='y', colors='white')
+
+    for bar in bars_bottom:
+        yval = bar.get_height()
+        ax2.text(bar.get_x() + bar.get_width() / 2, yval, f"{yval:.0f}", ha='center', va='bottom', color='white', fontsize=8)
+
+    plt.subplots_adjust(hspace=0.5)
 
     png_file_name = f"{os.path.splitext(file_name)[0]}_genre.png"
     plt.savefig(png_file_name, bbox_inches='tight', dpi=300)
     logging.info("'genre bar chart' completed.")
-    plt.show()
 
 # # # # # # # # # # # #
 #   AGE RATING        #
@@ -460,7 +521,9 @@ def age_rating_bar_chart(df, file_name):
     bar_colors = sns.color_palette("viridis", len(age_rating_count))
     bars = ax.bar(age_rating_count.index, age_rating_count, color=bar_colors)
 
-    ax.set_title("Games by age rating", fontsize=16, color='white')
+    plt.setp(ax.xaxis.get_majorticklabels(), rotation=30, ha='right')
+
+    ax.set_title("Games by Age Rating", fontsize=16, color='white')
     ax.set_xlabel("Age Rating", fontsize=12, color='white')
     ax.set_ylabel("Games", fontsize=12, color='white')
 
@@ -475,7 +538,6 @@ def age_rating_bar_chart(df, file_name):
     png_file_name = f"{os.path.splitext(file_name)[0]}_age_rating.png"
     plt.savefig(png_file_name, bbox_inches='tight', dpi=300)
     logging.info("'age rating bar chart' completed.")
-    plt.show()
 
 # # # # # # # # # # # #
 #   END               #
