@@ -169,6 +169,8 @@ def total_games(df):
     total_games = df["Title"].count()
     print(f"The total games made is: {total_games:.0f}")
     logging.info("'total games' completed.")
+    print("-" * 50)
+    print("-" * 50)
 
 # # # # # # # # # # # #
 #   RELEASE DATE      #
