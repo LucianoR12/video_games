@@ -130,7 +130,9 @@ def check_missing_values(df):
     logging.info("'check missing values' started.")
     missing_values = df.isnull().sum()
     print('Missing values:\n', missing_values)
-    
+    print("-" * 50)
+    print("-" * 50)
+
     if missing_values.any():
         df.dropna(inplace=True)
     
@@ -187,22 +189,33 @@ def count_release_date(df):
     # count_release_date.index.name = None
     print("Games by release year and month:")
     print(monthly_counts.to_string())
-
     logging.info("'count release date' completed.")
+    print("-" * 50)
+    print("-" * 50)
 
 # highlight the most common release date
 def most_common_release_date(df):
     logging.info("'most common release date' started.")
-    most_common_release_date = df["Release Date"].mode().iloc[0]
+    df['Release Date'] = pd.to_datetime(df['Release Date'])
+    df['Release Year'] = df['Release Date'].dt.year
+    df['Release Month'] = df['Release Date'].dt.strftime('%B %Y')
+    most_common_release_date = df["Release Month"].mode().iloc[0]
     print(f"The most common release date is: {most_common_release_date}")
     logging.info("'most common release date' completed.")
+    print("-" * 50)
+    print("-" * 50)
 
 # highlight the least common release date
 def least_common_release_date(df):
     logging.info("'least common release date' started.")
-    least_common_release_date = min(df["Release Date"].unique(), key=df["Release Date"].tolist().count)
+    df['Release Date'] = pd.to_datetime(df['Release Date'])
+    df['Release Year'] = df['Release Date'].dt.year
+    df['Release Month'] = df['Release Date'].dt.strftime('%B %Y')
+    least_common_release_date = min(df["Release Month"].unique(), key=df["Release Month"].tolist().count)
     print(f"The least common release date is: {least_common_release_date}")
     logging.info("'least common release date' completed.")
+    print("-" * 50)
+    print("-" * 50)
 
 # release date year bar chart
 def release_date_year_bar_chart(df, file_name):
@@ -285,6 +298,8 @@ def count_developer(df):
     print("Games by developer:")
     print(count_developer.to_string(name=False))
     logging.info("'count developer' completed.")
+    print("-" * 50)
+    print("-" * 50)
 
 # highlight the most common developer
 def most_common_developer(df):
@@ -292,6 +307,8 @@ def most_common_developer(df):
     most_common_developer = df["Developer"].mode().iloc[0]
     print(f"The most common developer is: {most_common_developer}")
     logging.info("'most common developer' completed.")
+    print("-" * 50)
+    print("-" * 50)
 
 # highlight the least common developer
 def least_common_developer(df):
@@ -299,6 +316,8 @@ def least_common_developer(df):
     least_common_developer = min(df["Developer"].unique(), key=df["Developer"].tolist().count)
     print(f"The least common developer is: {least_common_developer}")
     logging.info("'least common developer' completed.")
+    print("-" * 50)
+    print("-" * 50)
 
 # developer bar chart
 def developer_bar_chart(df, file_name):
@@ -362,6 +381,8 @@ def count_publisher(df):
     print("Games by publisher:")
     print(count_publisher.to_string(name=False))
     logging.info("'count publisher' completed.")
+    print("-" * 50)
+    print("-" * 50)
 
 # highlight the most common publisher
 def most_common_publisher(df):
@@ -369,6 +390,8 @@ def most_common_publisher(df):
     most_common_publisher = df["Publisher"].mode().iloc[0]
     print(f"The most common publisher is: {most_common_publisher}")
     logging.info("'most common publisher' completed.")
+    print("-" * 50)
+    print("-" * 50)
 
 # highlight the least common publisher
 def least_common_publisher(df):
@@ -376,6 +399,8 @@ def least_common_publisher(df):
     least_common_publisher = min(df["Publisher"].unique(), key=df["Publisher"].tolist().count)
     print(f"The least common publisher is: {least_common_publisher}")
     logging.info("'least common publisher' completed.")
+    print("-" * 50)
+    print("-" * 50)
 
 # publisher bar chart
 def publisher_bar_chart(df, file_name):
@@ -439,6 +464,8 @@ def count_genre(df):
     print("Games by genre:")
     print(count_genre.to_string(name=False))
     logging.info("'count genre' completed.")
+    print("-" * 50)
+    print("-" * 50)
 
 # highlight the most common genre
 def most_common_genre(df):
@@ -446,6 +473,8 @@ def most_common_genre(df):
     most_common_genre = df["Genre"].mode().iloc[0]
     print(f"The most common genre is: {most_common_genre}")
     logging.info("'most common genre' completed.")
+    print("-" * 50)
+    print("-" * 50)
 
 # highlight the least common genre
 def least_common_genre(df):
@@ -453,6 +482,8 @@ def least_common_genre(df):
     least_common_genre = min(df["Genre"].unique(), key=df["Genre"].tolist().count)
     print(f"The least common genre is: {least_common_genre}")
     logging.info("'least common genre' completed.")
+    print("-" * 50)
+    print("-" * 50)
 
 # genre bar chart
 def genre_bar_chart(df, file_name):
@@ -516,6 +547,8 @@ def count_age_rating(df):
     print("Games by age rating:")
     print(count_age_rating.to_string(name=False))
     logging.info("'count age rating' completed.")
+    print("-" * 50)
+    print("-" * 50)
 
 # highlight the most common age rating
 def most_common_age_rating(df):
@@ -523,6 +556,8 @@ def most_common_age_rating(df):
     most_common_age_rating = df["Age Rating"].mode().iloc[0]
     print(f"The most common age rating is: {most_common_age_rating}")
     logging.info("'most common age rating' completed.")
+    print("-" * 50)
+    print("-" * 50)
 
 # highlight the least common age rating
 def least_common_age_rating(df):
@@ -530,6 +565,8 @@ def least_common_age_rating(df):
     least_common_age_rating = min(df["Age Rating"].unique(), key=df["Age Rating"].tolist().count)
     print(f"The least common age rating is: {least_common_age_rating}")
     logging.info("'least common age rating' completed.")
+    print("-" * 50)
+    print("-" * 50)
 
 # age rating bar chart
 def age_rating_bar_chart(df, file_name):
@@ -573,6 +610,8 @@ def count_platform(df):
     print("Games by platform:")
     print(count_platform.to_string(name=False))
     logging.info("'count platform' completed.")
+    print("-" * 50)
+    print("-" * 50)
 
 # highlight the most common platform
 def most_common_platform(df):
@@ -580,6 +619,8 @@ def most_common_platform(df):
     most_common_platform = df["Platform"].mode().iloc[0]
     print(f"The most common platform is: {most_common_platform}")
     logging.info("'most common platform' completed.")
+    print("-" * 50)
+    print("-" * 50)
 
 # highlight the least common platform
 def least_common_platform(df):
@@ -587,6 +628,8 @@ def least_common_platform(df):
     least_common_platform = min(df["Platform"].unique(), key=df["Platform"].tolist().count)
     print(f"The least common platform is: {least_common_platform}")
     logging.info("'least common platform' completed.")
+    print("-" * 50)
+    print("-" * 50)
 
 # platform bar chart
 def platform_bar_chart(df, file_name):
