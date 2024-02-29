@@ -19,42 +19,54 @@ INFO:root:'remove columns' started.
 INFO:root:'remove columns' completed.
 INFO:root:'reset index' started.
 INFO:root:'reset index' completed.
+INFO:root:'count release date' started.
+INFO:root:'count release date' completed.
+INFO:root:'most common release date' started.
+INFO:root:'most common release date' completed.
+INFO:root:'least common release date' started.
+INFO:root:'least common release date' completed.
+INFO:root:'release date year bar chart' started.
+INFO:root:'release date year bar chart' completed.
+INFO:root:'release date month line chart' started.
+INFO:root:'release date month line chart' completed.
 INFO:root:'count developer' started.
 INFO:root:'count developer' completed.
 INFO:root:'most common developer' started.
 INFO:root:'most common developer' completed.
 INFO:root:'least common developer' started.
 INFO:root:'least common developer' completed.
+INFO:root:'developer bar chart' started.
+INFO:root:'developer bar chart' completed.
 INFO:root:'count publisher' started.
 INFO:root:'count publisher' completed.
 INFO:root:'most common publisher' started.
 INFO:root:'most common publisher' completed.
 INFO:root:'least common publisher' started.
 INFO:root:'least common publisher' completed.
+INFO:root:'publisher bar chart' started.
+INFO:root:'publisher bar chart' completed.
 INFO:root:'count genre' started.
 INFO:root:'count genre' completed.
 INFO:root:'most common genre' started.
 INFO:root:'most common genre' completed.
 INFO:root:'least common genre' started.
 INFO:root:'least common genre' completed.
+INFO:root:'genre bar chart' started.
+INFO:root:'genre bar chart' completed.
 INFO:root:'count age rating' started.
 INFO:root:'count age rating' completed.
 INFO:root:'most common age rating' started.
 INFO:root:'most common age rating' completed.
 INFO:root:'least common age rating' started.
 INFO:root:'least common age rating' completed.
-INFO:root:'release date year bar chart' started.
-INFO:root:'release date year bar chart' completed.
-INFO:root:'release date month line chart' started.
-INFO:root:'release date month line chart' completed.
-INFO:root:'developer bar chart' started.
-INFO:root:'developer bar chart' completed.
-INFO:root:'publisher bar chart' started.
-INFO:root:'publisher bar chart' completed.
-INFO:root:'genre bar chart' started.
-INFO:root:'genre bar chart' completed.
 INFO:root:'age rating bar chart' started.
 INFO:root:'age rating bar chart' completed.
+INFO:root:'count platform' started.
+INFO:root:'count platform' completed.
+INFO:root:'most common platform' started.
+INFO:root:'most common platform' completed.
+INFO:root:'least common platform' started.
+INFO:root:'least common platform' completed.
 INFO:root:'platform bar chart' started.
 INFO:root:'platform bar chart' completed.
 INFO:root:'end process csv file' started.

@@ -189,6 +189,29 @@ def total_games(df):
 #   RELEASE DATE      #
 # # # # # # # # # # # #
 
+# counts all the games by release date
+def count_release_date(df):
+    logging.info("'count release date' started.")
+    count_release_date = df["Release Date"].value_counts()
+    count_release_date.index.name = None
+    print("Games by release date:")
+    print(count_release_date.to_string(name=False))
+    logging.info("'count release date' completed.")
+
+# highlight the most common release date
+def most_common_release_date(df):
+    logging.info("'most common release date' started.")
+    most_common_release_date = df["Release Date"].mode().iloc[0]
+    print(f"The most common release date is: {most_common_release_date}")
+    logging.info("'most common release date' completed.")
+
+# highlight the least common release date
+def least_common_release_date(df):
+    logging.info("'least common release date' started.")
+    least_common_release_date = min(df["Release Date"].unique(), key=df["Release Date"].tolist().count)
+    print(f"The least common release date is: {least_common_release_date}")
+    logging.info("'least common release date' completed.")
+
 # release date year bar chart
 def release_date_year_bar_chart(df, file_name):
     logging.info("'release date year bar chart' started.")
@@ -271,14 +294,14 @@ def count_developer(df):
     print(count_developer.to_string(name=False))
     logging.info("'count developer' completed.")
 
-# highlight the most common payment method
+# highlight the most common developer
 def most_common_developer(df):
     logging.info("'most common developer' started.")
     most_common_developer = df["Developer"].mode().iloc[0]
     print(f"The most common developer is: {most_common_developer}")
     logging.info("'most common developer' completed.")
 
-# highlight the least common payment method
+# highlight the least common developer
 def least_common_developer(df):
     logging.info("'least common developer' started.")
     least_common_developer = min(df["Developer"].unique(), key=df["Developer"].tolist().count)
@@ -348,14 +371,14 @@ def count_publisher(df):
     print(count_publisher.to_string(name=False))
     logging.info("'count publisher' completed.")
 
-# highlight the most common payment method
+# highlight the most common publisher
 def most_common_publisher(df):
     logging.info("'most common publisher' started.")
     most_common_publisher = df["Publisher"].mode().iloc[0]
     print(f"The most common publisher is: {most_common_publisher}")
     logging.info("'most common publisher' completed.")
 
-# highlight the least common payment method
+# highlight the least common publisher
 def least_common_publisher(df):
     logging.info("'least common publisher' started.")
     least_common_publisher = min(df["Publisher"].unique(), key=df["Publisher"].tolist().count)
@@ -416,7 +439,7 @@ def publisher_bar_chart(df, file_name):
 #   GENRE             #
 # # # # # # # # # # # #
 
-# counts all the games by publisher
+# counts all the games by genre
 def count_genre(df):
     logging.info("'count genre' started.")
     count_genre = df["Genre"].value_counts()
@@ -425,14 +448,14 @@ def count_genre(df):
     print(count_genre.to_string(name=False))
     logging.info("'count genre' completed.")
 
-# highlight the most common payment method
+# highlight the most common genre
 def most_common_genre(df):
     logging.info("'most common genre' started.")
     most_common_genre = df["Genre"].mode().iloc[0]
     print(f"The most common genre is: {most_common_genre}")
     logging.info("'most common genre' completed.")
 
-# highlight the least common payment method
+# highlight the least common genre
 def least_common_genre(df):
     logging.info("'least common genre' started.")
     least_common_genre = min(df["Genre"].unique(), key=df["Genre"].tolist().count)
@@ -493,7 +516,7 @@ def genre_bar_chart(df, file_name):
 #   AGE RATING        #
 # # # # # # # # # # # #
 
-# counts all the games by publisher
+# counts all the games by age rating
 def count_age_rating(df):
     logging.info("'count age rating' started.")
     count_age_rating = df["Age Rating"].value_counts()
@@ -502,14 +525,14 @@ def count_age_rating(df):
     print(count_age_rating.to_string(name=False))
     logging.info("'count age rating' completed.")
 
-# highlight the most common payment method
+# highlight the most common age rating
 def most_common_age_rating(df):
     logging.info("'most common age rating' started.")
     most_common_age_rating = df["Age Rating"].mode().iloc[0]
     print(f"The most common age rating is: {most_common_age_rating}")
     logging.info("'most common age rating' completed.")
 
-# highlight the least common payment method
+# highlight the least common age rating
 def least_common_age_rating(df):
     logging.info("'least common age rating' started.")
     least_common_age_rating = min(df["Age Rating"].unique(), key=df["Age Rating"].tolist().count)
@@ -549,6 +572,29 @@ def age_rating_bar_chart(df, file_name):
 # # # # # # # # # # # #
 #   PLATFORM          #
 # # # # # # # # # # # #
+
+# counts all the games by platform
+def count_platform(df):
+    logging.info("'count platform' started.")
+    count_platform = df["Platform"].value_counts()
+    count_platform.index.name = None
+    print("Games by platform:")
+    print(count_platform.to_string(name=False))
+    logging.info("'count platform' completed.")
+
+# highlight the most common platform
+def most_common_platform(df):
+    logging.info("'most common platform' started.")
+    most_common_platform = df["Platform"].mode().iloc[0]
+    print(f"The most common platform is: {most_common_platform}")
+    logging.info("'most common platform' completed.")
+
+# highlight the least common platform
+def least_common_platform(df):
+    logging.info("'least common platform' started.")
+    least_common_platform = min(df["Platform"].unique(), key=df["Platform"].tolist().count)
+    print(f"The least common platform is: {least_common_platform}")
+    logging.info("'least common platform' completed.")
 
 # platform bar chart
 def platform_bar_chart(df, file_name):

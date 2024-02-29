@@ -43,28 +43,35 @@ def run_video_games_access(file_name):
         cleaned_xlsx = vg.get_file_path(f"{os.path.splitext(file_name)[0]}_cleaned", "xlsx")
         df.to_excel(cleaned_xlsx, index=False)
 
+        vg.count_release_date(df)
+        vg.most_common_release_date(df)
+        vg.least_common_release_date(df)
+        vg.release_date_year_bar_chart(df, file_name)
+        vg.release_date_month_line_chart(df, file_name)
+
         vg.count_developer(df)
         vg.most_common_developer(df)
         vg.least_common_developer(df)
+        vg.developer_bar_chart(df, file_name)
 
         vg.count_publisher(df)
         vg.most_common_publisher(df)
         vg.least_common_publisher(df)
+        vg.publisher_bar_chart(df, file_name)
 
         vg.count_genre(df)
         vg.most_common_genre(df)
         vg.least_common_genre(df)
+        vg.genre_bar_chart(df, file_name)
 
         vg.count_age_rating(df)
         vg.most_common_age_rating(df)
         vg.least_common_age_rating(df)
-
-        vg.release_date_year_bar_chart(df, file_name)
-        vg.release_date_month_line_chart(df, file_name)
-        vg.developer_bar_chart(df, file_name)
-        vg.publisher_bar_chart(df, file_name)
-        vg.genre_bar_chart(df, file_name)
         vg.age_rating_bar_chart(df, file_name)
+
+        vg.count_platform(df)
+        vg.most_common_platform(df)
+        vg.least_common_platform(df)
         vg.platform_bar_chart(df, file_name)
 
         cleaned_df = df.copy()
