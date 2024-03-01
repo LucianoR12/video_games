@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import logging
 import ast
+import re
 
 def run_video_games_access(file_name):
     try:
@@ -29,8 +30,8 @@ def run_video_games_access(file_name):
         vg.check_csv_file(file_name)
         df, output_file, output_buffer = vg.start_process_csv_file(file_name)
         vg.columns_validation(df)
-
-        # vg.print_info(df)
+    
+        vg.print_info(df)
         # vg.print_description(df)
         # vg.print_first_row(df)
 

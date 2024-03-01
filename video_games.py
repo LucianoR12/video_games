@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import logging
 import ast
+import re
 
 # # # # # # # # # # # #
 #   OUTPUT FILES      #
@@ -42,7 +43,7 @@ def end_process_csv_file(output_file, output_buffer):
     sys.stdout = sys.__stdout__
     with open(output_file, "w") as output_file:
         output_file.write(output_buffer.getvalue())
-        logging.info("'end process csv file' completed.")
+    logging.info("'end process csv file' completed.")
 
 # # # # # # # # # # # #
 #   CHECKS            #

@@ -5,6 +5,8 @@ INFO:root:'start process csv file' video_games.csv started.
 INFO:root:'start process csv file' completed.
 INFO:root:'columns validation' started.
 INFO:root:'columns validation' completed.
+INFO:root:'print info' started.
+INFO:root:'print info' completed.
 INFO:root:'rename column' started.
 INFO:root:'rename column' completed.
 INFO:root:'clean age rating' started.
